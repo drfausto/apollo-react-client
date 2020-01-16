@@ -1,26 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import UnivCatalog from './components/university/UnivCatalog';
+import CreateUniv from './components/university/CreateUniv'
+import EditUniv from './components/university/EditUniv'
+import ShowUniv from './components/university/ShowUniv'
+
+function App() {  
+  return (     
+    <Router>
+      <Switch>
+        <Route
+          exact path='/' component={ () => ( <UnivCatalog /> ) } />
+        <Route
+          path='/create' component={ () => ( <CreateUniv /> ) } />
+        <Route
+          path='/edit/:id' component={ () => ( <EditUniv /> ) } />
+        <Route
+          path='/show/:id' component={ () => ( <ShowUniv /> ) } />
+      </Switch>
+    </Router> 
+  )
 }
 
 export default App;

@@ -1,68 +1,201 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Introduction
+============
 
-## Available Scripts
+Description
+-----------
 
-In the project directory, you can run:
+### Server
 
-### `yarn start`
+A GraphQL server example built with the following technologies:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+-   *apollo-server-express*. Express and Connect integration of GraphQL Server.
+    Apollo Server is an open-source GraphQL server that works with many Node.js
+    HTTP server frameworks.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+-   *graphql*. JavaScript reference implementation for GraphQL, a query language
+    for APIs created by Facebook.
 
-### `yarn test`
+-   *typeorm*. An ORM that can run in NodeJS, Browser, Cordova, PhoneGap, Ionic,
+    React Native, NativeScript, Expo, and Electron platforms and can be used
+    with TypeScript and JavaScript (ES5, ES6, ES7, ES8).
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-   *sqlite*. A library that implements a small and self-contained SQL database
+    engine.
 
-### `yarn build`
+-   *nest*. A progressive Node.js framework for building server-side
+    applications, heavily inspired by Angular.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Client
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+A GraphQL client example built with the following technologies:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+-   *apollo-client*. A state management library for JavaScript apps. You write a
+    GraphQL query, and Apollo Client will take care of requesting and caching
+    your data, as well as updating your UI.
 
-### `yarn eject`
+-   *graphql*. JavaScript reference implementation for GraphQL, a query language
+    for APIs created by Facebook.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+-   *react*. JavaScript library for building user interfaces.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+-   *react-apollo*. Includes a component for providing an Apollo client instance
+    to a React component tree, and a higher-order component for retrieving that
+    client instance.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Installation and running
+------------------------
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+-   Github server repository:
+    [apollo-typeorm-nest-server](https://github.com/drfausto/apollo-typeorm-nest-server)
 
-## Learn More
+-   Github client repository:
+    [apollo-react-client](https://github.com/drfausto/apollo-react-client)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Server
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+-   \$ cd server-dir
 
-### Code Splitting
+-   \$ npm install
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+-   \$ npm run start
 
-### Analyzing the Bundle Size
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+You can test GraphQL API on localhost:5000/graphql.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### `Client`
 
-### Making a Progressive Web App
+-   \$ cd client-dir
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+-   \$ npm install
 
-### Advanced Configuration
+-   \$ npm run start
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+You can test GraphQL client on localhost:3000.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-### Deployment
+Implementation
+==============
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Architecture
+------------
 
-### `yarn build` fails to minify
+### Notes
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+-   On server side DTO (Data Transfer Object) layer is not implemented.
+
+-   It is very easy to change DB server. Thanks to TypeORM.
+
+-   On client side we use Apollo client. It is possible to use other libraries
+    too, as the figure shows.
+
+-   Apollo client is library agnostic. There are integrations available for
+    Angular and Vue.
+
+Code base
+---------
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Client UI implementation is based on excellent article from:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-   Node, Express, React.js, Graphql and MongoDB CRUD Web Application.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server implementation is based on great article from:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-   Nestjs Typeorm Graphql Dataloader tutorial with Typescript.
+
+Graphql Api
+-----------
+
+Testing the server on GraphQL Playground.
+
+### Queries
+
+-   Get the list of records
+
+![](media/c8c02b532016d65d535e5df54f2c882d.png)
+
+-   Get a record by id
+
+![](media/6bb30ae2a9b4b8aff00a1c1e3eda3cf8.png)
+
+### Mutations
+
+-   Create a record
+
+![](media/cff456dfcc134b9e963a7b1bd246c845.png)
+
+-   Update a record by id
+
+![](media/11652975a420d5e7490255bb31e7acd9.png)
+
+-   Delete a record by id
+
+![](media/a2f3406f1fa75b06312e2f63b194c73a.png)
+
+Notes
+-----
+
+Of course, it is just an example, nothing to put in production in a bank.
+
+### Server
+
+-   Initial project created with nest-cli tool.
+
+-   Nest.js RepoService implemented that gives access to TypeORM repository
+    (Data Mapper pattern).
+
+-   TypeORM/GraphQL integration, you don’t need to create GraphQL schema, just
+    the resolvers and of course TypeORM entities.
+
+### Client
+
+-   Initial project created with create-react-app tool.
+
+-   UI implementation follows standard react-router pattern.
+
+Todo
+----
+
+-   Implementing DTO layer on server.
+
+-   Implementing Data Loader layer on server.
+
+-   Implementing GraphQL subscriptions.
+
+-   Implementing pagination.
+
+-   Fixing automatic render of components. Components are not automatically
+    rerendered. I could not fix withrouter problem, sorry.
+
+-   Implementing robust error management.
+
+References
+==========
+
+-   Robin Wieruch excellent blog on GraphQL, Apollo and React.
+
+-   For an alternative to GraphQL developed by Netflix and named Falcor, see the
+    book:
+
+    -   Mastering Full Stack React Web Development.
+
+-   For an example on Redux and Axios, see the book:
+
+    -   Pro React 16.
+
+-   For examples on React, Redux and GraphQL, see the book:
+
+    -   React Quickly.
+
+-   Codersera blog.
+
+-   DJAMware blog.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

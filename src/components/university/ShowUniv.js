@@ -31,24 +31,24 @@ render() {
   const param = this.props.match.params; 
   const univId = parseFloat(param.id);
     return (
-	  <Query pollInterval={500} query={GET_UNIVERSITY} variables={{ univId }}>				
-			{ ({ loading, error, data }) => {
-				if (loading) return 'Loading...';
-				if (error) return `Error! ${error.message}`;
+    <Query pollInterval={500} query={GET_UNIVERSITY} variables={{ univId }}>				
+      { ({ loading, error, data }) => {
+        if (loading) return 'Loading...';
+        if (error) return `Error! ${error.message}`;
 
-				return (
-				  <div className="container">
+        return (
+          <div className="container">
             <div className="panel panel-default">
               <div className="panel-heading">
                 <h4><Link to="/" className="btn btn-primary">University catalog</Link></h4>
                 <h3 className="panel-title">{data.university.name} </h3>
               </div>
-							<div className="panel-body">
+              <div className="panel-body">
                 <dl>
                   <dt>City:</dt><dd>{data.university.city}</dd>
                   <dt>State:</dt><dd>{data.university.state}</dd>
-									<dt>Country:</dt><dd>{data.university.country}</dd>
-								</dl>
+                  <dt>Country:</dt><dd>{data.university.country}</dd>
+                </dl>
                 <Mutation mutation={DELETE_UNIVERSITY} key={data.university.id} 
                   onCompleted={() => this.props.history.push('/')}
                 >
@@ -70,13 +70,13 @@ render() {
                   </div>
                 )}
                 </Mutation>                                
-							</div>
-						</div>					
+              </div>
+            </div>					
           </div>
-				)
-			}}
-		</Query>
-	)
+        )
+      }}
+    </Query>
+  )
 }}
 
 export default withRouter(ShowUniv);
